@@ -41,8 +41,11 @@ export default function App({ $target }) {
     const suggestion = new Suggestion({
         $target,
         initialState: {
-            cursor: 0,
+            selectedIndex: 0,
             items: [],
+        },
+        onSelect: (language) => {
+            alert(language);
         },
     });
 }

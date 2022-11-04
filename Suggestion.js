@@ -47,7 +47,7 @@ export default function Suggestion({ $target, initialState, onSelect }) {
         if (this.state.items.length > 0) {
             const { selectedIndex } = this.state;
             const lastIndex = this.state.items.length - 1;
-            const navigationKeys = ['ArrowUp', 'ArrowDown'];
+            const navigationKeys = ['ArrowUp', 'ArrowDown', 'Enter'];
             let nextIndex = selectedIndex;
 
             if (navigationKeys.includes(e.key)) {
@@ -55,12 +55,26 @@ export default function Suggestion({ $target, initialState, onSelect }) {
                     nextIndex = selectedIndex === 0 ? lastIndex : nextIndex - 1;
                 } else if (e.key === 'ArrowDown') {
                     nextIndex = selectedIndex === lastIndex ? 0 : nextIndex + 1;
+                } else if (e.key === 'Enter') {
+                    onSelect(this.state.items[this.state.selectedIndex]);
                 }
 
                 this.setState({
                     ...this.state,
                     selectedIndex: nextIndex,
                 });
+            }
+        }
+    });
+
+    this.$element.addEventListener('click', (e) => {
+        const $li = e.target.closest('li');
+        if ($li) {
+            const { index } = $li.dataset;
+            try {
+                onSelect(this.state.items[parseInt(index)]);
+            } catch (e) {
+                alert('무언가 잘못되었습니다! 선택할 수 없습니다!');
             }
         }
     });
