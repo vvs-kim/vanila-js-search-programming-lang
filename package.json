@@ -17,5 +17,8 @@
     "bugs": {
         "url": "https://github.com/vvs-kim/vanila-js-search-programming-lang/issues"
     },
-    "homepage": "https://github.com/vvs-kim/vanila-js-search-programming-lang#readme"
+    "homepage": "https://github.com/vvs-kim/vanila-js-search-programming-lang#readme",
+    "dependencies": {
+        "serve": "^13.0.2"
+    }
 }
